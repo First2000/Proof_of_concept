@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des clients</title>
+</head>
+<body>
+    <h1>Liste des clients</h1>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Nom</th>
+            <th>Revenu</th>
+            <th>Date de création</th>
+        </tr>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.revenue }}</td>
+            <td>{{ customer.created_at }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Aucun client trouvé.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{% url 'add_customer' %}"><button>Ajouter un client</button></a>
+    <a href="{% url 'average-page' %}"><button>Voir revenu moyen</button></a>
+</body>
+</html>

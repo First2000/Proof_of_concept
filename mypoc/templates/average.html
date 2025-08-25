@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Moyenne des revenus</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        pre { white-space: pre-wrap; word-wrap: break-word; background:#f8f8f8; padding:10px; border-radius:4px; }
+        .meta { color: #555; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Moyenne des revenus clients</h1>
+    <div class="card">
+        {% if average %}
+            <p><strong>Moyenne :</strong> {{ average }}</p>
+            {% if signature %}
+                <p class="meta">Signature (hex) :</p>
+                <pre>{{ signature }}</pre>
+            {% endif %}
+        {% else %}
+            <p>Aucune donnée disponible.</p>
+        {% endif %}
+        <hr>
+        <p>Options :</p>
+
+        <!-- Bouton pour ajouter un client -->
+    <a href="{% url 'add_customer' %}">
+        <button type="button">Ajouter un client</button>
+    </a>
+
+    <!-- Bouton pour voir la liste des clients -->
+    <a href="{% url 'customer_list' %}">
+        <button type="button">Voir la liste des clients</button>
+    </a>
+
+        <ul>
+            <li><a href="?sign=true">Afficher la signature (sign=true)</a></li>
+            <li><a href="/api/average-revenue/">Obtenir via API (JSON)</a></li>
+        </ul>
+    </div>
+</body>
+</html>
